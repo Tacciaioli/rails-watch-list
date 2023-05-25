@@ -1,0 +1,17 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://www.photonics.com/images/Web/Articles/2019/11/4/thumbnail_65257.jpg');">
+  <div class="container">
+    <h1>Your <%= @list.name %> List</h1>
+    <p>Change your life whatch some movies</p>
+  </div>
+</div>
+
+<div>
+  <ul>
+    <% @list.bookmarks.each do |bookmark| %>
+      <li><%= bookmark.movie.title %>-  <%= bookmark.comment %> <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Oh, you want to delete?" } do %>
+        <i class="fa-solid fa-circle-xmark"></i>
+      <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
