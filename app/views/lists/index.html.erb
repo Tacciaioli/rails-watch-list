@@ -4,13 +4,12 @@
     <p>Change your life whatch some movies</p>
   </div>
 </div>
-<div>
-  <ul>
-    <% @lists.each do |list| %>
-      <li>
-      <%= list.name %>
-        
-      </li>
+<div class="cards">
+  <% @lists.each do |list| %>
+    <%= link_to list_path(list) do %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1CyY2a29pzuBFMpK-yK7L7xIHiNPFoGyKrg&usqp=CAU')" >
+        <%= list.name %>
+      </div>
     <% end %>
-  </ul>
+  <% end %>
 </div>
