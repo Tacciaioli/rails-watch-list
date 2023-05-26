@@ -2,29 +2,23 @@
   <div class="container">
     <h1>Your <%= @list.name %> List</h1>
     <p>Change your life whatch some movies</p>
+    <%= link_to "Add a Movie", new_list_bookmark_path(@list), class:"btn btn-gradient" %>
   </div>
 </div>
 
-<div>
-  <ul>
-    <% @list.bookmarks.each do |bookmark| %>
-      <li><%= bookmark.movie.title %>-  <%= bookmark.comment %> <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Oh, you want to delete?" } do %>
-        <i class="fa-solid fa-circle-xmark"></i>
-      <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-
 <div class="cards">
   <% @list.bookmarks.each do |bookmark| %>
-    <%= link_to list_path(list) do %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1CyY2a29pzuBFMpK-yK7L7xIHiNPFoGyKrg&usqp=CAU')" >
-        <%= bookmark.movie.title %>
-        <%= bookmark.comment %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= bookmark.movie.poster_url %>)" >
         <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Oh, you want to delete?" } do %>
+          <div class="x-icon">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+        <% end %>
+        <p><%= bookmark.movie.title %></p>
+        <p><%= bookmark.comment %></p>
       </div>
-    <% end %>
   <% end %>
+</div>
+<div class="back-button">
+  <%= link_to "Back to all Lists", lists_path(), class:"btn btn-gradient" %>
 </div>
