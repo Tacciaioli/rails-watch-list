@@ -2,6 +2,7 @@
 <%= simple_form_for @list do |f| %>
   <div class="form">
   <%= f.input :name %>
+   <%= f.input :photo, as: :file %>
   </div>
   <br>
   <div class="btn btn-gradient create-button">

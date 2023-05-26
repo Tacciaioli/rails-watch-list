@@ -1,17 +1,24 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://www.photonics.com/images/Web/Articles/2019/11/4/thumbnail_65257.jpg');">
   <div class="container">
     <h1>Your Movies Lists </h1>
-    <p>Change your life whatch some movies</p>
+    <p><span data-controller="typed-js"></span></p>
     <%= link_to "Add a List", new_list_path(@list), class:"btn btn-gradient" %>
   </div>
 </div>
 
 <div class="cards">
   <% @lists.each do |list| %>
-    <%= link_to list_path(list) do %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1CyY2a29pzuBFMpK-yK7L7xIHiNPFoGyKrg&usqp=CAU')" >
-        <%= list.name %>
-      </div>
-    <% end %>
+    <div class="position-relative">
+      <%= link_to list_path(list), data: { turbo_method: :delete, turbo_confirm: "Oh, you want to delete?" }, class: "position-absolute", style: "top: 8px; right: 8px; z-index: 1;" do %>
+        <div class="x-icon">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </div>
+      <% end %>
+      <%= link_to list_path(list) do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key %>')" >
+          <%= list.name %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
